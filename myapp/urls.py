@@ -21,9 +21,9 @@ from django.urls import path
 from myapp import views
   
 urlpatterns = [
+    path("", views.home_view, name="home"),
     path("admin/", admin.site.urls),
     path("aboutus/", views.aboutUs_view, name="about_us"),
     path("course/", views.cources_view, name="course"),
     path("course/<courseid>", views.courcesDetails, ),
 ]
- 
