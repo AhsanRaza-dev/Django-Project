@@ -6,6 +6,26 @@
     <h1>{{content}}</h1>
     <p>This is a simple Django application.</p>
     <p>{{clist}}</p>
-    
+    {% for n in clist%}
+    <div>{{forloop.counter0}} {{n}}</div>
+    <div>{{forloop.revcounter}} {{n}}</div>
+    <div>{{forloop.first}} {{n}}</div>
+    <div>{{forloop.last}} {{n}}</div>
+    {% endfor %}
+
+    <table border="1" cellpadding="5" cellspacing="0">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+      </tr>
+      {% for d in student_details%}
+      <tr>
+        <td>{{d.name}}</td>
+        <td>{{d.age}}</td>
+        <td>{{d.course}}</td>
+      </tr>
+      {% endfor %}
+    </table>
   </body>
 </html>

@@ -5,7 +5,8 @@ def home_view(request):
     data ={
         'title': 'Home Page',
         'content': 'Welcome to the Home Page',
-        'clist': ['Python', 'Django', 'JavaScript', 'HTML', 'CSS']
+        'clist': ['Python', 'Django', 'JavaScript', 'HTML', 'CSS'],
+        'student_details': [{'name': 'John Doe', 'age': 21, 'course': 'Computer Science'}, {'name': 'Jane Smith', 'age': 22, 'course': 'Mathematics'}]
     }
     return render(request, 'index.html',data)
 
