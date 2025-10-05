@@ -1,39 +1,1079 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>{{title}}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Engineer Portfolio</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   </head>
   <body>
-    <h1>{{content}}</h1>
-    <p>This is a simple Django application.</p>
-    <p>{{clist}}</p>
-    {% for n in clist%}
-    <div>{{forloop.counter0}} {{n}}</div>
-    <div>{{forloop.revcounter}} {{n}}</div>
-    <div>{{forloop.first}} {{n}}</div>
-    <div>{{forloop.last}} {{n}}</div>
-    {% endfor %}
+    <div id="particles-js" class="particles-container"></div>
+    <div class="neural-network-background">
+      <canvas id="neural-network"></canvas>
+    </div>
+    <header>
+      <nav>
+        <div class="logo-container">
+          <div class="logo">
+            <img src="/static/Ahsan.png" alt="Logo" class="logo-image" />
+          </div>
+          <canvas id="navbar-neurons" class="navbar-neurons"></canvas>
+        </div>
+        <div class="nav-links">
+          <a href="#hero" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#research" class="nav-link">Research</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#contacts" class="nav-link">Contact</a>
+        </div>
+        <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </nav>
+    </header>
 
-    <table border="1" cellpadding="5" cellspacing="0">
-      <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Course</th>
-      </tr>
-      {% for d in student_details%}
-      <tr>
-        <td>{{d.name}}</td>
-        <td>{{d.age}}</td>
-        <td>{{d.course}}</td>
-      </tr>
-      {% endfor %}
-    </table>
-    <br />
-    {%if number|length > 0 %} {% for num in number %} {% if num < 50 %}
-    <p>{{ num }} is less than 50</p>
-    {% elif num == 50 %}
-    <p>{{ num }} is equal to 50</p>
-    {% else %}
-    <p>{{ num }} is greater than 50</p>
-    {% endif %} {% endfor %}{% else %} No numbers available in the list {% endif %}
+    <section id="hero" class="hero">
+      <div class="social-links-top">
+        <a href="https://github.com/AhsanRaza-dev" class="social-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/ahsan-raza-14a8bb306/"
+          class="social-icon"
+        >
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://www.instagram.com/ahsanrazadev?igsh=MTBidjF0Nmc2ZWFpZw=="
+          class="social-icon"
+        >
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+            />
+          </svg>
+        </a>
+
+        <a
+          href="https://x.com/ahsanraza_dev?t=UqImtSs4_ltnaR6Y3gwuzQ&s=09"
+          class="social-icon"
+        >
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            />
+          </svg>
+        </a>
+        <a href="https://wa.me/qr/ZN22PNGT3QPZH1" class="social-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://www.facebook.com/share/1VUHCPdT5w/"
+          class="social-icon"
+        >
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://discord.com/channels/@ahsanraza.dev"
+          class="social-icon"
+        >
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9460 2.4189-2.1568 2.4189Z"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="hero-content">
+        <h1 class="glitch" data-text="Ahsan Raza">Ahsan Raza</h1>
+        <h3 class="glitch" data-text="AI Engineer & ML Specialist">
+          AI Engineer & ML Specialist
+        </h3>
+        <p class="subtitle">Transforming ideas into intelligent solutions</p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn primary-btn">View Work</a>
+          <a href="#contacts" class="btn secondary-btn">Connect</a>
+        </div>
+      </div>
+      <!-- Project counter with glitch effect -->
+      <div class="project-counter">
+        <div class="counter-item">
+          <div class="counter-number">
+            <span class="glitch-number" data-count="20+">20+</span>
+            <span class="counter-label">Projects</span>
+          </div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number">
+            <span class="glitch-number" data-count="2+">1+</span>
+            <span class="counter-label">Years Experience</span>
+          </div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number">
+            <span class="glitch-number" data-count="18+">12+</span>
+            <span class="counter-label">AI Models</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="section-header">
+        <h2>About Me</h2>
+        <div class="separator"></div>
+      </div>
+      <div class="about-content">
+        <div class="about-image">
+          <div class="rotating-container">
+            <!-- Central Image -->
+            <div class="circular-image-wrapper">
+              <img
+                src="/static/img.jpg"
+                alt="Ahsan Raza - AI Engineer"
+                class="circular-profile-image"
+              />
+              <div class="image-glow"></div>
+            </div>
+
+            <!-- Orbit 1 - Closest with main skills -->
+            <div class="orbit-1">
+              <div class="orbit-1-item">
+                <div class="orbit-item">ML</div>
+              </div>
+              <div class="orbit-1-item">
+                <div class="orbit-item">DL</div>
+              </div>
+              <div class="orbit-1-item">
+                <div class="orbit-item">NLP</div>
+              </div>
+              <div class="orbit-1-item">
+                <div class="orbit-item">CV</div>
+              </div>
+              <div class="orbit-1-item">
+                <div class="orbit-item">RL</div>
+              </div>
+            </div>
+
+            <!-- Orbit 2 - Middle with tech stack -->
+            <div class="orbit-2">
+              <div class="orbit-2-item">
+                <div class="orbit-item">PY</div>
+              </div>
+              <div class="orbit-2-item">
+                <div class="orbit-item">TF</div>
+              </div>
+              <div class="orbit-2-item">
+                <div class="orbit-item">PT</div>
+              </div>
+              <div class="orbit-2-item">
+                <div class="orbit-item">SK</div>
+              </div>
+              <div class="orbit-2-item">
+                <div class="orbit-item">CV2</div>
+              </div>
+              <div class="orbit-2-item">
+                <div class="orbit-item">NP</div>
+              </div>
+            </div>
+
+            <!-- Orbit 3 - Outermost with additional tools -->
+            <div class="orbit-3">
+              <div class="orbit-3-item">
+                <div class="orbit-item">Git</div>
+              </div>
+              <div class="orbit-3-item">
+                <div class="orbit-item">API</div>
+              </div>
+              <div class="orbit-3-item">
+                <div class="orbit-item">SQL</div>
+              </div>
+              <div class="orbit-3-item">
+                <div class="orbit-item">AWS</div>
+              </div>
+              <div class="orbit-3-item">
+                <div class="orbit-item">DOC</div>
+              </div>
+              <div class="orbit-3-item">
+                <div class="orbit-item">K8s</div>
+              </div>
+              <div class="orbit-3-item">
+                <div class="orbit-item">MLOps</div>
+              </div>
+              <div class="orbit-3-item">
+                <div class="orbit-item">AI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <h3>AI Engineer & ML Specialist</h3>
+          <p>
+            I'm a passionate AI Engineer specializing in developing cutting-edge
+            intelligent systems. With expertise in Natural Language Processing,
+            Computer Vision, Machine Learning, Deep Learning, and Reinforcement
+            Learning, I create solutions that push the boundaries of what's
+            possible.
+          </p>
+          <p>
+            My journey in artificial intelligence began with a fascination for
+            how machines can learn and adapt. Today, I develop algorithms and
+            models that solve complex problems across various domains.
+          </p>
+          <div class="skills-container">
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">TensorFlow</div>
+            <div class="skill-tag">PyTorch</div>
+            <div class="skill-tag">NLP</div>
+            <div class="skill-tag">Computer Vision</div>
+            <div class="skill-tag">Deep Learning</div>
+            <div class="skill-tag">Reinforcement Learning</div>
+          </div>
+          <a href="#" class="btn primary-btn download-btn">Download Resume</a>
+        </div>
+      </div>
+    </section>
+    <section id="experience" class="experience">
+      <div class="section-header">
+        <h2>Research</h2>
+        <div class="separator"></div>
+      </div>
+      <div class="experience-container">
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-company">TechAI Solutions</div>
+            <div class="experience-duration">2023 - Present</div>
+          </div>
+          <h3>Senior AI Engineer</h3>
+          <ul class="experience-details">
+            <li>
+              Led the development of a real-time object detection system for
+              autonomous vehicles, improving accuracy by 35%
+            </li>
+            <li>
+              Architected and implemented a multilingual NLP pipeline for
+              sentiment analysis across 12 languages
+            </li>
+            <li>
+              Mentored a team of 4 junior engineers in best practices for ML
+              model deployment
+            </li>
+          </ul>
+        </div>
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-company">DataVision Inc.</div>
+            <div class="experience-duration">2020 - 2023</div>
+          </div>
+          <h3>Machine Learning Engineer</h3>
+          <ul class="experience-details">
+            <li>
+              Developed and optimized computer vision algorithms for retail
+              analytics, reducing processing time by 40%
+            </li>
+            <li>
+              Implemented a recommendation engine that increased user engagement
+              by 28%
+            </li>
+            <li>
+              Collaborated with product teams to integrate ML models into
+              production environments
+            </li>
+          </ul>
+        </div>
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-company">NextGen AI Lab</div>
+            <div class="experience-duration">2018 - 2020</div>
+          </div>
+          <h3>AI Research Associate</h3>
+          <ul class="experience-details">
+            <li>
+              Conducted research on reinforcement learning algorithms for
+              robotic control systems
+            </li>
+            <li>
+              Published 3 papers in leading AI conferences on novel approaches
+              to transfer learning
+            </li>
+            <li>
+              Collaborated with international research teams on cutting-edge NLP
+              applications
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills">
+      <div class="section-header">
+        <h2>Skills</h2>
+        <div class="separator"></div>
+      </div>
+      <div class="skills-slider-wrapper">
+        <div class="skills-slider" id="skillsSlider">
+          <div class="skill-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M12 16.5l4-4h-3v-9h-2v9H8l4 4zm9-13h-6v1.8h6v14.4H3V5.3h6V3.5H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-14c0-1.1-.9-2-2-2z"
+                ></path>
+              </svg>
+            </div>
+            <h3>Frameworks</h3>
+            <div class="skill-tags">
+              <div class="skill-tag">TensorFlow</div>
+              <div class="skill-tag">PyTorch</div>
+              <div class="skill-tag">Keras</div>
+              <div class="skill-tag">scikit-learn</div>
+              <div class="skill-tag">Flutter</div>
+              <div class="skill-tag">Django</div>
+              <div class="skill-tag">FastAPI</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M3 3h18v18H3V3zm16.5 15.5V5.5h-15v13h15zM6.5 9H10c.8 0 1.5.7 1.5 1.5v1c0 .8-.7 1.5-1.5 1.5H7.5v2h-1V9zm1 3.5H10c.3 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5H7.5v2zm7-3.5h1v4.5h2v1h-3V9z"
+                ></path>
+              </svg>
+            </div>
+            <h3>Programming Languages</h3>
+            <div class="skill-tags">
+              <div class="skill-tag">Python</div>
+              <div class="skill-tag">Dart</div>
+              <div class="skill-tag">SQL</div>
+              <div class="skill-tag">R</div>
+              <div class="skill-tag">C++</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M13 17.5c0-.3-.1-.5-.3-.7l-1.8-1.8c-.2-.2-.4-.3-.7-.3-.5 0-1 .4-1 1 0 .3.1.5.3.7l1.8 1.8c.2.2.4.3.7.3.6 0 1-.4 1-1zM5 7.8v2.4c1.8 0 3.5.7 4.8 2s2 3 2 4.8h2.4c0-5.1-4.1-9.2-9.2-9.2zm0-2.8v2.4c6.3 0 11.4 5.1 11.4 11.6H19C19 9.9 12.9 5 5 5zm6.5 11.5l2.1 2.1 5.6-5.6-2.1-2.1-5.6 5.6z"
+                ></path>
+              </svg>
+            </div>
+            <h3>AI & ML Technologies</h3>
+            <div class="skill-tags">
+              <div class="skill-tag">Natural Language Processing</div>
+              <div class="skill-tag">Computer Vision</div>
+              <div class="skill-tag">Reinforcement Learning</div>
+              <div class="skill-tag">Deep Learning</div>
+              <div class="skill-tag">Neural Networks</div>
+              <div class="skill-tag">Data Mining</div>
+              <div class="skill-tag">MLOps</div>
+            </div>
+          </div>
+
+          <!-- Additional skill cards -->
+          <div class="skill-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3>Cloud & DevOps</h3>
+            <div class="skill-tags">
+              <div class="skill-tag">AWS</div>
+              <div class="skill-tag">Docker</div>
+              <div class="skill-tag">Kubernetes</div>
+              <div class="skill-tag">CI/CD</div>
+              <div class="skill-tag">Git</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
+                ></path>
+              </svg>
+            </div>
+            <h3>Data & Analytics</h3>
+            <div class="skill-tags">
+              <div class="skill-tag">Pandas</div>
+              <div class="skill-tag">NumPy</div>
+              <div class="skill-tag">Matplotlib</div>
+              <div class="skill-tag">Seaborn</div>
+              <div class="skill-tag">Jupyter</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-nav">
+          <button class="slider-btn" id="skillsPrev">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+              />
+            </svg>
+          </button>
+          <div class="slider-dots" id="skillsDots"></div>
+          <button class="slider-btn" id="skillsNext">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+      <div class="section-header">
+        <h2>Experience</h2>
+        <div class="separator"></div>
+      </div>
+      <div class="experience-container">
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-company">TechAI Solutions</div>
+            <div class="experience-duration">2023 - Present</div>
+          </div>
+          <h3>Senior AI Engineer</h3>
+          <ul class="experience-details">
+            <li>
+              Led the development of a real-time object detection system for
+              autonomous vehicles, improving accuracy by 35%
+            </li>
+            <li>
+              Architected and implemented a multilingual NLP pipeline for
+              sentiment analysis across 12 languages
+            </li>
+            <li>
+              Mentored a team of 4 junior engineers in best practices for ML
+              model deployment
+            </li>
+          </ul>
+        </div>
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-company">DataVision Inc.</div>
+            <div class="experience-duration">2020 - 2023</div>
+          </div>
+          <h3>Machine Learning Engineer</h3>
+          <ul class="experience-details">
+            <li>
+              Developed and optimized computer vision algorithms for retail
+              analytics, reducing processing time by 40%
+            </li>
+            <li>
+              Implemented a recommendation engine that increased user engagement
+              by 28%
+            </li>
+            <li>
+              Collaborated with product teams to integrate ML models into
+              production environments
+            </li>
+          </ul>
+        </div>
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-company">NextGen AI Lab</div>
+            <div class="experience-duration">2018 - 2020</div>
+          </div>
+          <h3>AI Research Associate</h3>
+          <ul class="experience-details">
+            <li>
+              Conducted research on reinforcement learning algorithms for
+              robotic control systems
+            </li>
+            <li>
+              Published 3 papers in leading AI conferences on novel approaches
+              to transfer learning
+            </li>
+            <li>
+              Collaborated with international research teams on cutting-edge NLP
+              applications
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <div class="separator"></div>
+      </div>
+      <div class="projects-slider-wrapper">
+        <div class="projects-slider" id="projectsSlider">
+          <div class="project-card">
+            <div class="project-image">
+              <div class="img-placeholder"></div>
+            </div>
+            <div class="project-content">
+              <h3>Gastrointestinal Tract Disease</h3>
+              <p>
+                An advanced NLP-powered conversational agent with context
+                awareness and multilingual capabilities.
+              </p>
+              <div class="project-tags">
+                <span>Deep Learning</span>
+                <span>Vision Transformers</span>
+                <span>Python</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn small-btn">View Project</a>
+                <a href="" class="link-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <div class="img-placeholder"></div>
+            </div>
+            <div class="project-content">
+              <h3>Fire Classification</h3>
+              <p>
+                Real-time fire classification detection and recognition system
+              </p>
+              <div class="project-tags">
+                <span>Deep learning</span>
+                <span>PyTorch</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn small-btn">View Project</a>
+                <a
+                  href="https://github.com/AhsanRaza-dev/DeepLearning_Models/blob/main/Fire_Classification_mobilenetV2.ipynb"
+                  class="link-icon"
+                >
+                  <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <div class="img-placeholder"></div>
+            </div>
+            <div class="project-content">
+              <h3>Face Detection</h3>
+              <p>An Computer Vision based project the dectects the face.</p>
+              <div class="project-tags">
+                <span>Computer Vision</span>
+                <span>Open CV</span>
+                <span>Python</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn small-btn">View Project</a>
+                <a
+                  href="https://github.com/AhsanRaza-dev/Avdvance_Deep_Learning/blob/master/face_Detection.py"
+                  class="link-icon"
+                >
+                  <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional project cards -->
+          <div class="project-card">
+            <div class="project-image">
+              <div class="img-placeholder"></div>
+            </div>
+            <div class="project-content">
+              <h3>Sentiment Analysis API</h3>
+              <p>
+                RESTful API for real-time sentiment analysis with support for
+                multiple languages and custom models.
+              </p>
+              <div class="project-tags">
+                <span>NLP</span>
+                <span>FastAPI</span>
+                <span>Docker</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn small-btn">View Project</a>
+                <a href="#" class="link-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <div class="img-placeholder"></div>
+            </div>
+            <div class="project-content">
+              <h3>Neural Style Transfer</h3>
+              <p>
+                AI-powered application that applies artistic styles to images
+                using deep neural networks.
+              </p>
+              <div class="project-tags">
+                <span>Deep Learning</span>
+                <span>TensorFlow</span>
+                <span>Art Generation</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn small-btn">View Project</a>
+                <a href="#" class="link-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-nav">
+          <button class="slider-btn" id="projectsPrev">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+              />
+            </svg>
+          </button>
+          <div class="slider-dots" id="projectsDots"></div>
+          <button class="slider-btn" id="projectsNext">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="contacts" style="background-color: #07071a">
+      <div class="section-header">
+        <h2>Get In Touch</h2>
+        <div class="separator"></div>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Let's build something amazing together</h3>
+          <p>
+            I'm always open to discussing new projects, creative ideas or
+            opportunities to be part of your vision.
+          </p>
+
+          <div class="info-item">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+              ></path>
+            </svg>
+            <span>ahsanaj695@gmail.com</span>
+          </div>
+          <div class="info-item">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+              ></path>
+            </svg>
+            <span>Gujrat, Pakistan</span>
+          </div>
+
+          <div class="social-links">
+            <a href="https://github.com/AhsanRaza-dev" class="social-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ahsan-raza-14a8bb306/"
+              class="social-icon"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/ahsanrazadev?igsh=MTBidjF0Nmc2ZWFpZw=="
+              class="social-icon"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </a>
+
+            <a
+              href="https://x.com/ahsanraza_dev?t=UqImtSs4_ltnaR6Y3gwuzQ&s=09"
+              class="social-icon"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </a>
+            <a href="https://wa.me/qr/ZN22PNGT3QPZH1" class="social-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/share/1VUHCPdT5w/"
+              class="social-icon"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://discord.com/channels/@ahsanraza.dev"
+              class="social-icon"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                  d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9460 2.4189-2.1568 2.4189Z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder=" "
+                required
+              />
+              <label for="name">Full Name</label>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder=" "
+                required
+              />
+              <label for="email">Email Address</label>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder=" "
+                required
+              />
+              <label for="subject">Subject</label>
+            </div>
+
+            <div class="form-group">
+              <textarea
+                id="message"
+                name="message"
+                placeholder=" "
+                required
+              ></textarea>
+              <label for="message">Message</label>
+            </div>
+
+            <button type="submit" class="btn primary-btn submit-btn">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="copyright">
+        <p>&copy; 2025 AI Engineer Portfolio. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script>
+      // Contact Form Handling
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form data
+          const formData = new FormData(this);
+          const name = formData.get("name");
+          const email = formData.get("email");
+          const subject = formData.get("subject");
+          const message = formData.get("message");
+
+          // Simple validation
+          if (!name || !email || !subject || !message) {
+            alert("Please fill in all fields");
+            return;
+          }
+
+          // Create mailto link
+          const mailtoLink = `mailto:ahsanaj695@gmail.com?subject=${encodeURIComponent(
+            subject
+          )}&body=${encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+          )}`;
+
+          // Open email client
+          window.location.href = mailtoLink;
+
+          // Show success message
+          alert(
+            "Thank you for your message! Your email client should open now."
+          );
+
+          // Reset form
+          this.reset();
+        });
+      // Make sure this runs when the page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector("header");
+
+        // Remove scrolled class initially
+        header.classList.remove("scrolled");
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        });
+      });
+      class Slider {
+        constructor(sliderId, prevBtnId, nextBtnId, dotsId) {
+          this.slider = document.getElementById(sliderId);
+          this.prevBtn = document.getElementById(prevBtnId);
+          this.nextBtn = document.getElementById(nextBtnId);
+          this.dotsContainer = document.getElementById(dotsId);
+          this.currentIndex = 0;
+          this.itemsPerView = this.getItemsPerView();
+          this.totalItems = this.slider.children.length;
+          this.maxIndex = Math.max(0, this.totalItems - this.itemsPerView);
+
+          this.init();
+        }
+
+        getItemsPerView() {
+          const width = window.innerWidth;
+          if (width <= 768) return 1;
+          if (width <= 1024) return 2;
+          return 3;
+        }
+
+        init() {
+          this.createDots();
+          this.updateSlider();
+          this.bindEvents();
+          window.addEventListener("resize", () => this.handleResize());
+        }
+
+        createDots() {
+          this.dotsContainer.innerHTML = "";
+          // Calculate number of dots based on how many "pages" we have
+          this.numDots = Math.ceil(this.totalItems / this.itemsPerView);
+
+          for (let i = 0; i < this.numDots; i++) {
+            const dot = document.createElement("div");
+            dot.className = "slider-dot";
+            dot.addEventListener("click", () =>
+              this.goToSlide(i * this.itemsPerView)
+            );
+            this.dotsContainer.appendChild(dot);
+          }
+        }
+
+        updateSlider() {
+          const translateX = -(this.currentIndex * (100 / this.itemsPerView));
+          this.slider.style.transform = `translateX(${translateX}%)`;
+
+          // Update navigation states
+          this.prevBtn.disabled = this.currentIndex === 0;
+          this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
+
+          // Update dots - Fixed calculation
+          const activeDotIndex = Math.floor(
+            this.currentIndex / this.itemsPerView
+          );
+          this.dotsContainer
+            .querySelectorAll(".slider-dot")
+            .forEach((dot, index) => {
+              dot.classList.toggle("active", index === activeDotIndex);
+            });
+        }
+
+        bindEvents() {
+          this.prevBtn.addEventListener("click", () => this.prevSlide());
+          this.nextBtn.addEventListener("click", () => this.nextSlide());
+
+          // Touch/swipe support
+          let startX = 0;
+          let endX = 0;
+
+          this.slider.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+          });
+
+          this.slider.addEventListener("touchend", (e) => {
+            endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+
+            if (Math.abs(diffX) > 50) {
+              if (diffX > 0) {
+                this.nextSlide();
+              } else {
+                this.prevSlide();
+              }
+            }
+          });
+        }
+
+        prevSlide() {
+          if (this.currentIndex > 0) {
+            this.currentIndex--;
+            this.updateSlider();
+          }
+        }
+
+        nextSlide() {
+          if (this.currentIndex < this.maxIndex) {
+            this.currentIndex++;
+            this.updateSlider();
+          }
+        }
+
+        goToSlide(index) {
+          this.currentIndex = Math.min(Math.max(0, index), this.maxIndex);
+          this.updateSlider();
+        }
+
+        handleResize() {
+          const newItemsPerView = this.getItemsPerView();
+          if (newItemsPerView !== this.itemsPerView) {
+            this.itemsPerView = newItemsPerView;
+            this.maxIndex = Math.max(0, this.totalItems - this.itemsPerView);
+            this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
+            this.createDots();
+            this.updateSlider();
+          }
+        }
+
+        // Add method to check if at end for auto-play
+        isAtEnd() {
+          return this.currentIndex >= this.maxIndex;
+        }
+
+        // Add method to reset to beginning
+        resetToStart() {
+          this.currentIndex = 0;
+          this.updateSlider();
+        }
+      }
+
+      // Initialize sliders when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize Skills Slider
+        const skillsSlider = new Slider(
+          "skillsSlider",
+          "skillsPrev",
+          "skillsNext",
+          "skillsDots"
+        );
+
+        // Initialize Projects Slider
+        const projectsSlider = new Slider(
+          "projectsSlider",
+          "projectsPrev",
+          "projectsNext",
+          "projectsDots"
+        );
+
+        // Fixed Auto-slide functionality
+        setInterval(() => {
+          if (skillsSlider.isAtEnd()) {
+            skillsSlider.resetToStart();
+          } else {
+            skillsSlider.nextSlide();
+          }
+        }, 5000);
+
+        setInterval(() => {
+          if (projectsSlider.isAtEnd()) {
+            projectsSlider.resetToStart();
+          } else {
+            projectsSlider.nextSlide();
+          }
+        }, 6000);
+      });
+    </script>
+    <script src="/static/script.js"></script>
+    <script src="/static/neural-network.js"></script>
+    <script src="/static/particles-config.js"></script>
   </body>
 </html>
