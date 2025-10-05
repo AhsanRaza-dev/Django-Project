@@ -27,5 +27,13 @@
       </tr>
       {% endfor %}
     </table>
+    <br />
+    {%if number|length > 0 %} {% for num in number %} {% if num < 50 %}
+    <p>{{ num }} is less than 50</p>
+    {% elif num == 50 %}
+    <p>{{ num }} is equal to 50</p>
+    {% else %}
+    <p>{{ num }} is greater than 50</p>
+    {% endif %} {% endfor %}{% else %} No numbers available in the list {% endif %}
   </body>
 </html>
